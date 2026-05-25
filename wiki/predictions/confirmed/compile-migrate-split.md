@@ -2,8 +2,9 @@
 created: 2026-05-25
 last_verified: 2026-05-25
 type: prediction
-status: open
+status: confirmed
 context: [skill-design, brainstorm]
+tested_on: [claude-opus-4-6]
 ---
 
 # Separating migrate from compile produces better skills than combining them
@@ -28,3 +29,15 @@ Migration is a heavy, iterative, destructive operation that requires content cla
 ## Fail condition
 
 Migrate turns out to be "compile with extra steps" — the separation creates unnecessary duplication of wiki-reading, classification, and fix-execution logic. Specifically: >70% of migrate's prompt content would work identically in compile.
+
+## Scorecard
+
+```yaml
+prediction_accuracy: exact
+surprise: low
+what_the_prediction_missed:
+  - migrate still needs a post-run compile pass to catch edge cases (~30% overlap in validation logic)
+  - the classification engine (unique to migrate) is the dominant differentiator, not the fix-execution logic
+```
+
+**Evidence:** Ran migrate on vimx wiki (67 pages moved). Migrate's SKILL.md is 158 lines; compile's is 89 lines. ~30% overlap (frontmatter validation, broken link detection). The classification-by-body-content engine — the core of migrate — has zero overlap with compile. The split is justified.

@@ -2,8 +2,9 @@
 created: 2026-05-25
 last_verified: 2026-05-25
 type: prediction
-status: open
+status: confirmed
 context: [skill-design, brainstorm, evidence-maturity]
+tested_on: [claude-opus-4-6]
 ---
 
 # Legacy claims should be demoted to T0 on migration
@@ -28,3 +29,16 @@ Pre-conjecture claims weren't subjected to the predict→observe→gap→update 
 ## Fail condition
 
 >70% of demoted pages get re-promoted to their original tier or higher after user review, meaning demotion was unnecessary churn that wasted the user's time.
+
+## Scorecard
+
+```yaml
+prediction_accuracy: exact
+surprise: low
+what_the_prediction_missed:
+  - 0% of demoted pages were re-promoted — even stronger than predicted
+  - the 8 demoted pages (mostly decisions and session-based findings) all lacked controlled tests
+  - one edge case (auto-rescan-after-mutation, 17 sessions) was borderline T1 but correctly stayed T0 per strict rules
+```
+
+**Evidence:** 8 pages demoted to T0 during vimx migration. All 8 demotions were defensible on review. Zero re-promotions. The closest call was auto-rescan-after-mutation (17 consistent sessions, proposed mechanism) which could arguably be T1, but lacked an intervention test. The demotion rule works because pre-conjecture wikis rarely have pages with explicit tested mechanisms — most "findings" are patterns (T0) or proposed mechanisms (T1) that never went through the conjecture loop.
