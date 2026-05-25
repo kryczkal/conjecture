@@ -12,9 +12,7 @@ conjecture/
 │   ├── predict/                 # predictions + scorecards
 │   ├── distill/                 # wiki page compression
 │   ├── ingest/                  # multi-layer wiki enrichment
-│   ├── evolve/                  # genetic skill improvement
-│   ├── wiki-compile/            # governor + lint + action plan
-│   └── brainstorm/              # ideas → committed specs
+│   └── wiki-compile/            # governor + lint + action plan
 ├── protocol/
 │   ├── CLAUDE.md                # canonical wiki schema template
 │   └── scaffold/                # directory template for /conjecture:init

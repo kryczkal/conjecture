@@ -27,8 +27,6 @@ In any project:
 /conjecture:ingest <file>     # enrich the wiki with external knowledge
 /conjecture:distill <page>    # tighten a wiki page to minimum viable content
 /conjecture:wiki-compile      # lint the wiki, check learning health
-/conjecture:evolve <skill>    # genetically improve any skill
-/conjecture:brainstorm        # turn ideas into committed spec files
 ```
 
 ## What it does
@@ -64,8 +62,6 @@ The full protocol lives in [`protocol/CLAUDE.md`](protocol/CLAUDE.md). Key ideas
 | `ingest` | Three-layer enrichment (implicit assumptions → tensions → explicit claims) |
 | `distill` | Compress a wiki page to minimum viable content with coverage gating |
 | `wiki-compile` | Governor + evidence audit + structural lint + action plan |
-| `evolve` | Genetically improve any skill via parallel agent testing |
-| `brainstorm` | Turn ideas into committed spec files via decision mapping and Q&A |
 
 ## Philosophy
 
