@@ -1,0 +1,22 @@
+{
+  "name": "conjecture",
+  "owner": {
+    "name": "Lukasz Kryczka",
+    "email": "lukasz.kryczka000@gmail.com"
+  },
+  "metadata": {
+    "description": "Falsification-driven project wiki. Every claim starts as a prediction with a fail condition."
+  },
+  "plugins": [
+    {
+      "name": "conjecture",
+      "source": "./",
+      "description": "Conjectures and refutations for software. A reasoning protocol that turns every change into a falsifiable prediction — predict, test, learn, repeat.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Lukasz Kryczka"
+      },
+      "license": "MIT"
+    }
+  ]
+}
