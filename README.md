@@ -1,8 +1,38 @@
 # Conjecture
 
-Conjectures and refutations for software.
+A Claude Code plugin for running your project like an ongoing experiment.
 
-A Claude Code plugin that turns every change into a falsifiable prediction. You predict what will happen, do the work, record what actually happened, and the gap between prediction and reality is where you learn.
+Not a notes wiki. Not "let the LLM dump insights into markdown."
+
+**If a claim matters, it does not get to become knowledge just because it sounds right.** It starts life as a conjecture. Then you test it. Then it either survives, dies, or gets revised.
+
+## Why
+
+In `vimx`, one strong story was that affordance-typed tools (`press`, `type`, `toggle`, `select`) were the killer feature. It sounded right. It felt true.
+
+Benchmarks showed the important part was not the affordance distinction at all — for normal HTML, the DOM already encodes that. The real value was scanner quality: better labels, better disambiguation, less noise.
+
+Without Conjecture, "affordance typing is the core moat" would have stayed filed as knowledge. With Conjecture, it entered as a bet, got tested, got partially refuted, and the system learned something sharper.
+
+That is the difference between learning and folklore.
+
+## The loop
+
+**predict -> observe -> notice the gap -> update**
+
+Skip the prediction and you cannot tell whether you learned or just rationalized afterward. Skip the record of failure and you lose the thing that would have made the next session smarter.
+
+Wrong predictions are first-class. They are where the model of the project actually improves.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `/conjecture:init` | Create the `wiki/` structure in the current project |
+| `/conjecture:predict` | State a conjecture before acting, with a fail condition |
+| `/conjecture:ingest <file>` | Read raw material as evidence — surface tensions, don't promote opinions |
+| `/conjecture:distill <page>` | Compress a page while preserving load-bearing content |
+| `/conjecture:wiki-compile` | Audit: is the system learning or merely accumulating? |
 
 ## Install
 
@@ -11,63 +41,9 @@ A Claude Code plugin that turns every change into a falsifiable prediction. You 
 /plugin install conjecture@kryczkal
 ```
 
-Or manually:
-```bash
-git clone https://github.com/kryczkal/conjecture.git
-cd conjecture && ln -s "$(pwd)" ~/.claude/plugins/data/conjecture
-```
+Or: `git clone https://github.com/kryczkal/conjecture.git && ln -s "$(pwd)/conjecture" ~/.claude/plugins/data/conjecture`
 
-## Use
-
-In any project:
-
-```
-/conjecture:init              # scaffold a wiki in this project
-/conjecture:predict           # state what you expect before acting
-/conjecture:ingest <file>     # enrich the wiki with external knowledge
-/conjecture:distill <page>    # tighten a wiki page to minimum viable content
-/conjecture:wiki-compile      # lint the wiki, check learning health
-```
-
-## What it does
-
-Every project gets a `wiki/` directory — a self-learning knowledge base where:
-
-- **Predictions** are the core unit. A bet specific enough to be wrong.
-- **Knowledge** is observations with evidence, tagged by maturity (T0-T3).
-- **Frameworks** are interpretive lenses that generate predictions. A framework that hasn't generated a prediction in 30 days is dead weight.
-- **Axioms** are constitutional rules. Can't be tested — but must be challenged.
-- **The governor** tracks whether you're actually learning (prediction accuracy trend) or just accumulating pages.
-
-The learning atom: predict → observe → notice the gap → update. The wiki is the loop's memory.
-
-## The protocol
-
-The full protocol lives in [`protocol/CLAUDE.md`](protocol/CLAUDE.md). Key ideas:
-
-1. Every change is a conjecture first
-2. Conjectures must have fail conditions
-3. Refutations are first-class — never delete a wrong prediction
-4. Patterns are actionable without mechanisms (T0 is first-class)
-5. The system declares its own epistemology and its blind spots
-6. Less is more — every page earns its keep or gets deleted
-7. The system examines itself — axioms get challenged, the governor tracks learning rate
-
-## Skills
-
-| Skill | What it does |
-|-------|-------------|
-| `init` | Scaffold `wiki/` with the Conjecture protocol |
-| `predict` | State a prediction before acting, scorecard after |
-| `ingest` | Three-layer enrichment (implicit assumptions → tensions → explicit claims) |
-| `distill` | Compress a wiki page to minimum viable content with coverage gating |
-| `wiki-compile` | Governor + evidence audit + structural lint + action plan |
-
-## Philosophy
-
-From Karl Popper's *Conjectures and Refutations*: we don't learn by being right. We learn by being wrong in specific, trackable ways. The rate of becoming less wrong is the only metric that matters.
-
-This plugin operationalizes that insight for software development. Every hypothesis about your code, your architecture, your process — make it a prediction, test it, record the result. Over time, patterns emerge: where your mental model is accurate, where it drifts, and where to invest attention.
+Full protocol: [`protocol/CLAUDE.md`](protocol/CLAUDE.md)
 
 ## License
 
