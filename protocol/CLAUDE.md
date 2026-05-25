@@ -111,6 +111,7 @@ T0 is first-class. You don't need a mechanism to act on a pattern. You need a me
 **Observe** — when you notice a pattern (n>=3), file it as T0 knowledge. Ask: does this predict something untested?
 **Challenge** — pick an axiom or framework. Argue the strongest case against it. REVISE/KEEP/BREAK.
 **Govern** — every ~20 confirmed/refuted predictions: compute the accuracy trend. If improving → continue. If flat → challenge axioms. If declining → something is fundamentally wrong.
+**Migrate** — convert a non-conjecture wiki to the schema. Classify every page by reading body content, build a plan (CLEAR/AMBIGUOUS/SKIP), execute on approval. Destructive — requires version control. Designed for iterative runs until clean.
 **Compile** — periodic lint. Check: stale pages (>30d unverified), orphans, broken links, predictions stuck open >14d, frameworks with no downstream predictions, graveyard pages past expiry, axiom challenge dates.
 
 ## Rules

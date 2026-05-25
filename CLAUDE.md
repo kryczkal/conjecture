@@ -31,6 +31,7 @@ conjecture/
 ├── .claude-plugin/plugin.json   # plugin manifest
 ├── skills/                      # Claude Code skills exposed by the plugin
 │   ├── init/                    # scaffold wiki in a target project
+│   ├── migrate/                 # convert non-conjecture wiki to schema
 │   ├── predict/                 # lightweight predictions + scorecards
 │   ├── ingest/                  # enrich wiki from raw material
 │   ├── distill/                 # compress pages without losing load-bearing facts
