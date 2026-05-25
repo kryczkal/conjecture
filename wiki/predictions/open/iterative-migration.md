@@ -2,7 +2,7 @@
 created: 2026-05-25
 last_verified: 2026-05-25
 type: prediction
-status: refuted
+status: open
 context: [skill-design, brainstorm]
 tested_on: [claude-opus-4-6]
 ---
@@ -30,16 +30,8 @@ Migration is a complex transformation with interdependencies — moving page A c
 
 First-pass accuracy is >95% (compile finds <3 issues after first migrate run on a 46-page wiki). If the first pass is that clean, iteration adds overhead without meaningful improvement.
 
-## Scorecard
+## Observations (n=1, not yet confirmable)
 
-```yaml
-prediction_accuracy: wrong
-surprise: medium
-what_the_prediction_missed:
-  - first-pass accuracy was ~97% — only 3 minor issues remained (frontmatter miss, directory-level cross-ref, raw type string)
-  - the mechanism was wrong — interdependencies between pages did NOT cause cascading issues in practice
-  - the skill's cross-ref repair pass (grep old paths, replace with new) handled interdependencies in a single sweep
-  - iteration is still useful for SAFETY (revert and retry) but not for ACCURACY
-```
+**vimx (2026-05-25):** First-pass accuracy ~97% (3 minor issues: frontmatter miss, directory-level cross-ref, raw type string). Batch cross-ref repair handled interdependencies in one sweep. Direction: against prediction.
 
-**Evidence:** First migrate run on vimx (67 pages) achieved ~97% accuracy. The 3 remaining issues were minor mechanical misses (one frontmatter field, one directory-level link, one non-schema type string in raw/), not classification errors or content loss. A second run would clean those up but the value is marginal. The predicted mechanism (moving page A breaks classification of page B) did not materialize — the batch cross-ref repair handled all interdependencies.
+Needs: iris run + a wiki with deeper cross-referencing (vimx's references may have been unusually clean). A wiki where page A's classification depends on page B's content could flip this entirely.

@@ -2,19 +2,22 @@
 
 Chronological record of wiki operations. Append-only.
 
-## [2026-05-25] test | live migrate run on vimx wiki — 4 predictions resolved
+## [2026-05-25] correction | premature resolution reverted — n=1 is not enough
 
-Ran migrate skill on vimx wiki (67 pages moved, 5 skipped, 1 minor fix). Built skill via /evolve (3 screening agents + adversarial validator, then bred winner).
+Prematurely resolved 4 predictions as confirmed/refuted based on a single migrate run on vimx. Reverted all to open. One repo, one run, one model is n=1 — not confirmable per protocol (T0 requires n>=3). Observations recorded on each prediction page but no scorecards filed. This is the exact failure mode conjecture was built to prevent.
 
-**Resolved:**
-- compile-migrate-split → CONFIRMED (exact). ~30% overlap with compile. Classification engine is unique to migrate.
-- classification-requires-body → CONFIRMED (partial). 7/67 pages (10.4%) changed by body. Barely survived 90% fail threshold. But the 7 pages were disproportionately important.
-- iterative-migration → REFUTED (wrong). First-pass accuracy 97%. The mechanism (interdependencies cause cascading issues) did not materialize. Batch cross-ref repair handled it.
-- demote-claims-on-migration → CONFIRMED (exact). 0/8 demoted pages re-promoted. All demotions defensible.
+## [2026-05-25] test | live migrate run on vimx wiki — first observation
 
-**Still open:** scorecards-only-from-evidence (not directly tested by this run).
+Ran migrate skill on vimx wiki (67 pages moved, 5 skipped, 1 minor fix). Built skill via /evolve (3 screening agents + adversarial validator, then bred winner). All 5 predictions remain OPEN with n=1 observations.
 
-**Governor:** 4 resolved (3 confirmed, 1 refuted). 3 exact, 1 partial, 1 wrong. Accuracy: 60% exact, 80% confirmed. Next fire at ~20. Rate: 4 in day 1.
+**Observations (direction only):**
+- compile-migrate-split: 30% overlap → supports
+- classification-requires-body: 10.4% body-changed → weakly supports (0.4% margin)
+- iterative-migration: 97% first-pass → against
+- demote-claims-on-migration: 0% re-promoted → supports (LLM review, not user)
+- scorecards-only-from-evidence: not tested
+
+**Next:** run on iris + one more repo. Get user review on demotions.
 
 ## [2026-05-25] ingest | brainstorm session — compile/migrate split
 

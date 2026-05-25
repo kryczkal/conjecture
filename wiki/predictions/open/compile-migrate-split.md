@@ -2,7 +2,7 @@
 created: 2026-05-25
 last_verified: 2026-05-25
 type: prediction
-status: confirmed
+status: open
 context: [skill-design, brainstorm]
 tested_on: [claude-opus-4-6]
 ---
@@ -30,14 +30,8 @@ Migration is a heavy, iterative, destructive operation that requires content cla
 
 Migrate turns out to be "compile with extra steps" — the separation creates unnecessary duplication of wiki-reading, classification, and fix-execution logic. Specifically: >70% of migrate's prompt content would work identically in compile.
 
-## Scorecard
+## Observations (n=1, not yet confirmable)
 
-```yaml
-prediction_accuracy: exact
-surprise: low
-what_the_prediction_missed:
-  - migrate still needs a post-run compile pass to catch edge cases (~30% overlap in validation logic)
-  - the classification engine (unique to migrate) is the dominant differentiator, not the fix-execution logic
-```
+**vimx (2026-05-25):** Ran migrate on 67-page wiki. ~30% overlap with compile (frontmatter validation, broken link detection). Classification-by-body-content engine has zero overlap. Migrate SKILL.md is 158 lines; compile is 89 lines. Direction: supports prediction.
 
-**Evidence:** Ran migrate on vimx wiki (67 pages moved). Migrate's SKILL.md is 158 lines; compile's is 89 lines. ~30% overlap (frontmatter validation, broken link detection). The classification-by-body-content engine — the core of migrate — has zero overlap with compile. The split is justified.
+Needs: iris run + at least one more repo before resolving. The 30% overlap could be higher or lower on differently-structured wikis.

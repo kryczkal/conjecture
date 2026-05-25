@@ -2,7 +2,7 @@
 created: 2026-05-25
 last_verified: 2026-05-25
 type: prediction
-status: confirmed
+status: open
 context: [skill-design, brainstorm, vimx-migration]
 tested_on: [claude-opus-4-6]
 ---
@@ -30,15 +30,8 @@ Frontmatter type is a label the author chose, not a semantic classification. A "
 
 Frontmatter type mapping (finding→knowledge, hypothesis→prediction, principle→framework, benchmark→raw, gap→prediction) is correct >90% of the time without reading body content. If simple mapping works, body-content classification is overhead.
 
-## Scorecard
+## Observations (n=1, not yet confirmable)
 
-```yaml
-prediction_accuracy: partial
-surprise: high
-what_the_prediction_missed:
-  - body content only changed 7/67 classifications (10.4%) — barely past the 90% threshold
-  - the prediction framed body-reading as essential; in practice it's a 10% edge-case handler
-  - the 7 pages where it mattered were disproportionately important (axiom vs framework, prediction vs raw)
-```
+**vimx (2026-05-25):** 7/67 pages (10.4%) had classification changed by body content. Frontmatter-only mapping was 89.6% correct — barely below the 90% fail threshold. The 7 changed pages were high-impact: benchmarks-validate-principles-decide (principle→axiom), vimx-bench-v1 (benchmark→prediction), expose-primitives (finding→framework candidate). Direction: weakly supports prediction.
 
-**Evidence:** 7/67 pages (10.4%) had classification changed by body content. Frontmatter-only mapping was 89.6% correct — the prediction survives its fail condition by 0.4%. But the 7 changed pages included high-impact reclassifications: benchmarks-validate-principles-decide (principle→axiom), vimx-bench-v1 (benchmark→prediction), expose-primitives (finding→framework candidate). Body reading is not essential for most pages but catches the ones where getting it wrong matters most.
+Needs: iris run + another repo. vimx had relatively consistent naming (type matched content ~90%). A messier wiki could push the number much higher or lower. The 0.4% margin is too thin to call on n=1.
