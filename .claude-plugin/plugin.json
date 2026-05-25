@@ -1,0 +1,24 @@
+{
+  "name": "conjecture",
+  "version": "0.1.0",
+  "description": "Conjectures and refutations for software. A reasoning protocol that turns every change into a falsifiable prediction — predict, test, learn, repeat.",
+  "author": {
+    "name": "Lukasz Kryczka",
+    "url": "https://github.com/lukaszkryczka"
+  },
+  "repository": "https://github.com/lukaszkryczka/conjecture",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "reasoning",
+    "hypothesis-engine",
+    "wiki",
+    "falsification",
+    "predictions",
+    "learning",
+    "epistemology"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
