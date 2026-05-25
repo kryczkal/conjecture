@@ -4,11 +4,11 @@ A Claude Code plugin that stops your project wiki from becoming fiction.
 
 ## The problem
 
-You start an LLM wiki. Feed it transcripts, docs, session notes. The model synthesizes "knowledge." It feels productive.
+I kept making development decisions based on what I thought I knew. Then I'd hit a wall and realize the thing I "knew" was a guess I'd never tested. I wasn't building with knowledge — I was building with vibes that had been sitting in a wiki long enough to feel like facts.
 
-Six weeks later you have 40 pages of confident-sounding claims and no idea which ones are true. The wiki is making decisions for you based on things nobody ever tested. You'd be better off without it — at least then you'd know you were guessing.
+I ran Karpathy-style LLM wikis across three projects. They all degraded the same way: feed in transcripts, docs, session notes, and the model synthesizes "knowledge." Six weeks later you have 40 pages of confident-sounding claims and no idea which ones are true. Plausible first impressions stored with the same authority as verified findings. The file count grew. The signal didn't.
 
-This happened to me. I ran Karpathy-style LLM wikis across three projects. They all degraded the same way: plausible first impressions got stored with the same authority as verified findings. The file count grew. The signal didn't.
+The wiki wasn't giving me direction. It was giving me false confidence. I'd have been better off without it — at least then I'd know I was guessing.
 
 ## What went wrong (concrete example)
 
