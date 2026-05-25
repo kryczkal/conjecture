@@ -2,6 +2,16 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-25] test | evolved compile on vimx/swarm/jarvis — 2 confirmed, 1 open
+
+Ran evolved wiki-compile (governor-first, interleaved fixes, compressed audit) on all 3 repos.
+
+**Confirmed:** compile-fix-interleaved (exact, n=3: 18/17/10 fixes executed vs ~8 deferred). compile-fewer-deeper (exact, n=3: 4/6 actionable across all repos, 0 actionable misses).
+
+**Open:** compile-redirects-to-migrate (n=3 pre-flights passed but fail condition untested — all wikis already migrated). Edge case found: pre-flight should exclude raw/ pages. Fixed.
+
+**Governor:** 6 confirmed (4 exact, 2 partial), 0 refuted. Resolution rate: 6 in day 1. 3 open predictions remain. Next fire at ~20.
+
 ## [2026-05-25] lint | first wiki-compile
 
 Governor: 4 confirmed, 0 refuted, 4 scorecards (2 exact, 2 partial). Learning rate positive. Neither open prediction confirmable without new tests. Next governor fire at ~20.
