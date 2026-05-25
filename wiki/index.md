@@ -9,6 +9,7 @@ What this project currently believes. Updated as predictions are confirmed/refut
 - [iterative-migration](predictions/open/iterative-migration.md) — iteration beats single-pass. **n=1 (vimx): 97% first-pass. Against prediction.**
 - [demote-claims-on-migration](predictions/open/demote-claims-on-migration.md) — demote claims to T0. **n=1 (vimx): 0% re-promoted. Supports prediction. Needs user review, not just LLM.**
 - [scorecards-only-from-evidence](predictions/open/scorecards-only-from-evidence.md) — never hallucinate scorecards. **Untested.**
+- [resolution-needs-gate](predictions/open/resolution-needs-gate.md) — protocol needs enforcement, not just stated rules. **n=1: completion bias caused premature resolution.**
 
 ## Confirmed predictions
 
