@@ -50,9 +50,11 @@ Use `mkdir -p` — safe to run on existing directories.
 
 ## Step 3: Copy protocol
 
-Read `${CLAUDE_SKILL_DIR}/../../../protocol/CLAUDE.md` (the canonical Conjecture protocol template).
+The canonical Conjecture protocol template is bundled with the plugin:
 
-Write it to `wiki/CLAUDE.md`.
+!`cat "${CLAUDE_SKILL_DIR}/../../protocol/CLAUDE.md" 2>/dev/null || echo "ERROR: Protocol template not found at ${CLAUDE_SKILL_DIR}/../../protocol/CLAUDE.md"`
+
+Write the protocol template content above to `wiki/CLAUDE.md`.
 
 ## Step 4: Create starter pages
 
