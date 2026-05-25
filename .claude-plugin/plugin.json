@@ -4,9 +4,9 @@
   "description": "Conjectures and refutations for software. A reasoning protocol that turns every change into a falsifiable prediction — predict, test, learn, repeat.",
   "author": {
     "name": "Lukasz Kryczka",
-    "url": "https://github.com/lukaszkryczka"
+    "url": "https://github.com/kryczkal"
   },
-  "repository": "https://github.com/lukaszkryczka/conjecture",
+  "repository": "https://github.com/kryczkal/conjecture",
   "license": "MIT",
   "keywords": [
     "claude-code",

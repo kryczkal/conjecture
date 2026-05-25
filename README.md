@@ -7,13 +7,13 @@ A Claude Code plugin that turns every change into a falsifiable prediction. You 
 ## Install
 
 ```
-/plugin marketplace add lukaszkryczka/conjecture
-/plugin install conjecture@lukaszkryczka
+/plugin marketplace add kryczkal/conjecture
+/plugin install conjecture@kryczkal
 ```
 
 Or manually:
 ```bash
-git clone https://github.com/lukaszkryczka/conjecture.git
+git clone https://github.com/kryczkal/conjecture.git
 cd conjecture && ln -s "$(pwd)" ~/.claude/plugins/data/conjecture
 ```
 
