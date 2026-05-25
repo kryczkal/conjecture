@@ -1,37 +1,84 @@
 # Conjecture
 
-A Claude Code plugin that stops your project wiki from becoming fiction.
+Conjecture is a Claude Code plugin for keeping project knowledge honest.
 
-## The problem
+It turns "I think this is true" into:
 
-I ran Karpathy-style LLM wikis across three projects. They all degraded the same way: plausible first impressions got stored with the same authority as verified findings. Six weeks later — 40 pages of confident claims, no idea which ones are true. I wasn't building with knowledge. I was building with vibes that had been sitting in markdown long enough to feel like facts.
+```text
+prediction -> test -> result -> update
+```
 
-In `vimx`, the wiki confidently stated that affordance-typed tools — `press`, `type`, `toggle`, `select` — were the core differentiator. Multiple sessions reinforced it. Benchmarks across 50+ sites showed the type system adds zero information over raw HTML tags. The real moat was scanner quality: 7x fewer empty labels, 2.25x fewer duplicates. The boring part nobody tested was the valuable part.
+Instead of letting guesses harden into wiki facts, Conjecture makes important claims start as predictions with fail conditions.
 
-## The fix
+## Why use it
 
-New insight enters as a **prediction** with an explicit fail condition. It becomes knowledge only after surviving contact with reality. Refuted predictions stay in `refuted/` — a documented wrong belief is more useful than an undocumented right guess. A governor tracks whether prediction accuracy is improving or pages are just accumulating.
+LLMs are good at writing confident explanations. Wikis are good at making old explanations look authoritative. That combination quietly creates fake knowledge:
 
-**predict -> observe -> notice the gap -> update**
+> a guess gets written down, future sessions read it as fact, and the project starts steering around something nobody tested.
+
+This is what Conjecture prevents.
+
+Use it when:
+
+- you are building with Claude across many sessions
+- project direction depends on assumptions you have not verified
+- your wiki/README/CLAUDE.md keeps going stale
+- agents keep repeating old claims without checking code or benchmarks
+- you want wrong beliefs preserved instead of forgotten
+
+## What it helps with
+
+Conjecture helps you catch:
+
+- **fake principles**: ideas written down too early and treated as rules
+- **stale docs**: old architecture pages trusted over current code
+- **wrong product stories**: "this is the moat" claims that benchmarks later refute
+- **misleading validation**: measurements that prove safety but not direction
+- **wiki bloat**: pages accumulating without improving decisions
+
+The goal is not more documentation. The goal is better steering.
+
+## The basic move
+
+Bad wiki entry:
+
+```md
+Typed browser actions are our core differentiator.
+```
+
+Conjecture entry:
+
+```md
+Prediction: Typed browser actions will reduce wrong-action errors.
+Fail condition: raw HTML lets the agent infer the same actions with no mismatches.
+Result: refuted. Across 1,500+ elements, typing added no information; scanner label quality mattered.
+```
+
+The first entry sounds like knowledge. The second entry can be tested, lost, and used to change direction.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `/conjecture:init` | Create the `wiki/` structure in the current project |
-| `/conjecture:predict` | State a conjecture before acting, with a fail condition |
-| `/conjecture:ingest <file>` | Read raw material as evidence — surface tensions, don't promote opinions |
-| `/conjecture:distill <page>` | Compress a page while preserving load-bearing content |
-| `/conjecture:wiki-compile` | Audit: is the system learning or merely accumulating? |
+| `/conjecture:init` | Create a `wiki/` built around predictions |
+| `/conjecture:predict` | State a falsifiable bet before work |
+| `/conjecture:ingest <file>` | Pull testable claims from notes, logs, transcripts, benchmarks |
+| `/conjecture:distill <page>` | Shorten a page without losing decisions or evidence |
+| `/conjecture:wiki-compile` | Check whether the wiki is learning or just growing |
 
 ## Install
 
-```
+```sh
 /plugin marketplace add kryczkal/conjecture
 /plugin install conjecture@kryczkal
 ```
 
-Or: `git clone https://github.com/kryczkal/conjecture.git && ln -s "$(pwd)/conjecture" ~/.claude/plugins/data/conjecture`
+Or clone it directly:
+
+```sh
+git clone https://github.com/kryczkal/conjecture.git
+ln -s "$(pwd)/conjecture" ~/.claude/plugins/data/conjecture
+```
 
 Full protocol: [`protocol/CLAUDE.md`](protocol/CLAUDE.md)
 

@@ -1,32 +1,54 @@
-# Conjecture — Development
+# Conjecture — Development Notes
 
-Claude Code plugin for falsification-driven reasoning. Skills + wiki protocol template.
+Conjecture is a Claude Code plugin that installs a falsification-driven project wiki.
+
+The plugin exists because ordinary AI project wikis tend to promote plausible guesses into durable "knowledge." Conjecture makes the opposite move: every important claim starts as a prediction with a fail condition, and only earns authority after observation.
+
+## Product shape
+
+User-facing summary:
+
+> A project wiki for testing your development beliefs before they harden into facts.
+
+Core loop:
+
+```text
+predict -> observe -> notice the gap -> update
+```
+
+The wiki is not a knowledge dump. It is memory for that loop:
+
+- open predictions hold untested beliefs
+- confirmed predictions hold beliefs that survived a test
+- refuted predictions hold wrong beliefs and what they revealed
+- knowledge pages hold evidence-backed patterns
+- frameworks and axioms hold lenses that must periodically be challenged
 
 ## Structure
 
-```
+```text
 conjecture/
 ├── .claude-plugin/plugin.json   # plugin manifest
-├── skills/                      # all skills (discovered by plugin system)
-│   ├── init/                    # scaffold wiki in any project
-│   ├── predict/                 # predictions + scorecards
-│   ├── distill/                 # wiki page compression
-│   ├── ingest/                  # multi-layer wiki enrichment
-│   └── wiki-compile/            # governor + lint + action plan
+├── skills/                      # Claude Code skills exposed by the plugin
+│   ├── init/                    # scaffold wiki in a target project
+│   ├── predict/                 # lightweight predictions + scorecards
+│   ├── ingest/                  # enrich wiki from raw material
+│   ├── distill/                 # compress pages without losing load-bearing facts
+│   └── wiki-compile/            # audit whether the wiki is learning
 ├── protocol/
 │   ├── CLAUDE.md                # canonical wiki schema template
-│   └── scaffold/                # directory template for /conjecture:init
-└── README.md
+│   └── scaffold/                # starter index/log for /conjecture:init
+└── README.md                    # public explanation
 ```
 
-## How skills work
+## Development rules
 
-Skills are SKILL.md files. The plugin system discovers them from `skills/`. Each skill reads `wiki/CLAUDE.md` in the target project to understand the wiki's structure before operating.
-
-## Adapting skills
-
-Skills must be project-agnostic. Never hardcode paths to a specific project. Read `wiki/CLAUDE.md` for schema, `wiki/index.md` for state, `wiki/log.md` for recent activity.
+- Keep skills project-agnostic. Read the target project's `wiki/CLAUDE.md`, `wiki/index.md`, and `wiki/log.md`; do not hardcode Iris, VimX, or this repo.
+- Preserve the distinction between raw input and knowledge. Transcripts, benchmark output, and user notes are evidence sources, not truth.
+- Prefer updating existing wiki pages over creating new ones. More pages are not progress unless they improve prediction quality.
+- Keep refutations visible. Wrong predictions are product value, not cleanup.
+- When changing the protocol, ask what decision the change will alter and what future observation would prove it wrong.
 
 ## Testing
 
-Test skills by running them in a project with a Conjecture wiki. The iris project (`~/Projects/iris`) is the original instance.
+Test skills inside a project that already has a Conjecture-style wiki. The original live instance is `~/Projects/iris`; VimX has the precursor wiki that exposed the failure mode this plugin is meant to fix.
