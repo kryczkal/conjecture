@@ -28,16 +28,18 @@ The ONE question: is this wiki learning or accumulating?
 
 ## 2. What blocks the next resolution?
 
-For each open prediction, answer ONE question: what prevents confirmation or refutation right now?
+For each open prediction, classify:
 
 - **EVIDENCE EXISTS** — test data is in the wiki; needs scorecard + move
 - **TESTABLE NOW** — no infrastructure needed, just run the test
 - **BLOCKED BY ___** — name the specific blocker
 - **PARKED** — explicitly deferred; state whether park condition changed
 
-Rank by resolution speed. **Top 3 to test next** with one-sentence rationale each.
+**Execute immediately (before continuing to Section 3):**
+1. For every EVIDENCE EXISTS prediction: add scorecard, move file to `confirmed/` or `refuted/`, update `index.md`. Do this NOW — do not defer to a "Fix" section or an "Actions" list.
+2. For every TESTABLE NOW prediction where the test can be run by reading existing wiki/code: run the test, record the result, move the prediction. Free learning costs nothing.
 
-**Fix now:** Move EVIDENCE EXISTS predictions to confirmed/refuted with scorecards. Update index.
+Only after all EVIDENCE EXISTS and quick-testable predictions are resolved, rank the remaining open predictions by resolution speed. **Top 3 to test next** with one-sentence rationale each.
 
 ## 3. Knowledge→prediction pipeline
 
