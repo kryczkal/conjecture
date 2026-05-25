@@ -6,6 +6,7 @@ status: active
 maturity: T1
 tested_on: [claude-opus-4-6]
 context: [migrate-testing]
+evidence: [predictions/confirmed/iterative-migration.md, predictions/confirmed/demote-claims-on-migration.md]
 ---
 
 # Migration first-pass accuracy scales inversely with wiki structural complexity

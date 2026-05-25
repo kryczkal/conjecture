@@ -22,6 +22,10 @@ What this project currently believes. Updated as predictions are confirmed/refut
 
 - [migration-accuracy-scales-with-complexity](knowledge/migration-accuracy-scales-with-complexity.md) — T1: accuracy scales with complexity. Mechanism tested: depth-aware cross-ref repair improved jarvis from 33%→93% cross-ref accuracy. n=4.
 
+## Raw
+
+- [2026-05-25-compile-migrate-split](raw/2026-05-25-compile-migrate-split.md) — spec from brainstorm session
+
 ## Frameworks
 
-(none yet)
+(none yet — filing the implicit "falsification over confirmation" framework is action item #3)

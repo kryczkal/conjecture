@@ -2,6 +2,16 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-25] lint | first wiki-compile
+
+Governor: 4 confirmed, 0 refuted, 4 scorecards (2 exact, 2 partial). Learning rate positive. Neither open prediction confirmable without new tests. Next governor fire at ~20.
+
+Fixed: spec moved to raw/ (not a conjecture type). Added evidence field to knowledge page frontmatter.
+
+Flagged: demote-claims needs user review (not just LLM). All predictions tested on single model only. No frameworks filed (implicit philosophy not made explicit).
+
+Top action: run the scorecards-only-from-evidence test on vimx's 6 resolved predictions — 15 minutes, resolves an open prediction.
+
 ## [2026-05-25] ingest | evolved skill live test — knowledge bumped to T1
 
 Source: evolved migrate skill live test on vimx (n=4). The three evolve mutations (complexity assessment, evidence-adaptive maturity, depth-aware cross-ref) all validated.
