@@ -30,8 +30,14 @@ Pre-conjecture claims weren't subjected to the predict→observe→gap→update 
 
 >70% of demoted pages get re-promoted to their original tier or higher after user review, meaning demotion was unnecessary churn that wasted the user's time.
 
-## Observations (n=1, not yet confirmable)
+## Observations (n=3)
 
-**vimx (2026-05-25):** 8 pages demoted to T0. 0% re-promoted on review. Closest call: auto-rescan-after-mutation (17 sessions, proposed mechanism, borderline T1). Direction: supports prediction.
+**vimx (2026-05-25):** 8 demoted, 0% re-promoted. Closest call: auto-rescan-after-mutation (17 sessions). Direction: supports.
 
-Needs: iris run + a wiki where the original author was more rigorous about evidence (vimx's pre-conjecture wiki was written quickly — a more methodical wiki might have pages that legitimately earned higher tiers). Also needs actual USER review, not just LLM review — the test agent judged demotions, not the project owner.
+**swarm (2026-05-25):** 11 demoted, 0% re-promoted. 2 borderline (v0-architecture with 4 sub-decisions, test-runner-memory with RSS measurements). Both correctly T0 per strict rules. Direction: supports.
+
+**jarvis (2026-05-25):** 34 demoted, 8 arguably over-demoted (23.5%). Over-demoted pages: component and contract pages with strong shipping evidence (30+ commits, real-device testing, e2e verification). These have evidence well beyond T0 but blanket demotion doesn't distinguish.
+
+Pattern: blanket T0 demotion works for decision/finding-heavy wikis (vimx, swarm). For wikis with strong implementation evidence (jarvis — components with shipping history), it's too aggressive. The fail condition (>70% re-promoted) is not met (max was 23.5%), but the demotion rule may need nuance: "demote to T0 unless the page contains verified implementation evidence (shipped code, production measurements)."
+
+Still needs actual USER review, not just LLM review.

@@ -30,8 +30,12 @@ Migration is a heavy, iterative, destructive operation that requires content cla
 
 Migrate turns out to be "compile with extra steps" — the separation creates unnecessary duplication of wiki-reading, classification, and fix-execution logic. Specifically: >70% of migrate's prompt content would work identically in compile.
 
-## Observations (n=1, not yet confirmable)
+## Observations (n=3)
 
-**vimx (2026-05-25):** Ran migrate on 67-page wiki. ~30% overlap with compile (frontmatter validation, broken link detection). Classification-by-body-content engine has zero overlap. Migrate SKILL.md is 158 lines; compile is 89 lines. Direction: supports prediction.
+**vimx (2026-05-25):** 67-page wiki, 8 legacy types. ~30% overlap with compile. Direction: supports.
 
-Needs: iris run + at least one more repo before resolving. The 30% overlap could be higher or lower on differently-structured wikis.
+**swarm (2026-05-25):** 41-page wiki, 8 legacy types. ~35-40% overlap. Overlap was in frontmatter validation, broken link detection, index consistency. Classification engine, file moves, structural rewrites had zero overlap. Direction: supports.
+
+**jarvis (2026-05-25):** 78-page wiki, 11 legacy types (including person, component, contract, status — types vimx and swarm didn't have). ~25-30% overlap. The most structurally different wiki tested. Direction: supports.
+
+Range across 3 repos: 25-40% overlap. All well below the 70% fail threshold. The classification-by-body-content engine is consistently the dominant differentiator — it exists only in migrate.

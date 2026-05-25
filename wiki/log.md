@@ -2,6 +2,16 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-25] test | migrate on swarm (n=2) + jarvis (n=3) — parallel runs
+
+Ran migrate on swarm (41 pages, 8 types) and jarvis (78 pages, 11 types) in parallel. All predictions remain open with n=3 observations recorded.
+
+**Key findings:**
+- classification-requires-body: strengthened. 17% on swarm, 18% on jarvis vs 10% on vimx. Messier wikis depend more on body reading.
+- iterative-migration: genuinely mixed. 97%/95%/90% first-pass across clean→messy wikis. The mechanism was wrong but a new pattern emerged: accuracy correlates with structural complexity.
+- demote-claims-on-migration: jarvis showed 23.5% arguably over-demoted (component pages with shipping evidence). Blanket T0 may need nuance.
+- scorecards-only-from-evidence: jarvis had 2 informal hypotheses that were tested but correctly got no scorecards.
+
 ## [2026-05-25] correction | premature resolution reverted — n=1 is not enough
 
 Prematurely resolved 4 predictions as confirmed/refuted based on a single migrate run on vimx. Reverted all to open. One repo, one run, one model is n=1 — not confirmable per protocol (T0 requires n>=3). Observations recorded on each prediction page but no scorecards filed. This is the exact failure mode conjecture was built to prevent.

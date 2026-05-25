@@ -30,8 +30,12 @@ Migration is a complex transformation with interdependencies — moving page A c
 
 First-pass accuracy is >95% (compile finds <3 issues after first migrate run on a 46-page wiki). If the first pass is that clean, iteration adds overhead without meaningful improvement.
 
-## Observations (n=1, not yet confirmable)
+## Observations (n=3, mixed results)
 
-**vimx (2026-05-25):** First-pass accuracy ~97% (3 minor issues: frontmatter miss, directory-level cross-ref, raw type string). Batch cross-ref repair handled interdependencies in one sweep. Direction: against prediction.
+**vimx (2026-05-25):** 97% first-pass accuracy. 3 minor issues. Direction: against prediction (above 95% threshold).
 
-Needs: iris run + a wiki with deeper cross-referencing (vimx's references may have been unusually clean). A wiki where page A's classification depends on page B's content could flip this entirely.
+**swarm (2026-05-25):** ~95% first-pass accuracy. Remaining: TODO markers in structural sections, extractable predictions from raw session data, inline prose references to old dir names, verbose pages needing distill. Direction: borderline.
+
+**jarvis (2026-05-25):** ~90% first-pass accuracy. Remaining: evidence field TODOs on 20 knowledge pages, 8 pages arguably deserving T1 not T0, cross-ref depth issues from nested archives, broken session screen paths after move. Direction: supports prediction.
+
+Pattern: accuracy correlates with wiki messiness. Clean wikis (vimx) → first pass is enough. Messy wikis (jarvis) → iteration helps. The predicted mechanism (interdependencies causing cascading issues) was wrong for all three — the actual driver is structural complexity (archive nesting, binary asset references, deep relative paths).

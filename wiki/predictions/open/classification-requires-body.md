@@ -30,8 +30,12 @@ Frontmatter type is a label the author chose, not a semantic classification. A "
 
 Frontmatter type mapping (finding→knowledge, hypothesis→prediction, principle→framework, benchmark→raw, gap→prediction) is correct >90% of the time without reading body content. If simple mapping works, body-content classification is overhead.
 
-## Observations (n=1, not yet confirmable)
+## Observations (n=3)
 
-**vimx (2026-05-25):** 7/67 pages (10.4%) had classification changed by body content. Frontmatter-only mapping was 89.6% correct — barely below the 90% fail threshold. The 7 changed pages were high-impact: benchmarks-validate-principles-decide (principle→axiom), vimx-bench-v1 (benchmark→prediction), expose-primitives (finding→framework candidate). Direction: weakly supports prediction.
+**vimx (2026-05-25):** 7/67 pages (10.4%) changed by body. Frontmatter-only was 89.6% correct — barely below 90% threshold. Direction: weakly supports.
 
-Needs: iris run + another repo. vimx had relatively consistent naming (type matched content ~90%). A messier wiki could push the number much higher or lower. The 0.4% margin is too thin to call on n=1.
+**swarm (2026-05-25):** 7/41 pages (17.1%) changed by body. Frontmatter-only was 82.9% correct. Key changes: 2 principles→axioms (constitutional rules), 1 decision→T2 (production-verified), 1 gap→knowledge (partially-addressed), 1 status→knowledge. Direction: supports.
+
+**jarvis (2026-05-25):** 14/78 pages (17.9%) changed by body. Frontmatter-only was 82.1% correct. Key changes: gaps with unusual statuses (refuted, closed-by-decision), principles→frameworks, status pages→raw or knowledge depending on content. Direction: supports.
+
+Frontmatter-only accuracy: vimx 89.6%, swarm 82.9%, jarvis 82.1%. vimx was the outlier — its type naming was unusually consistent. On messier wikis, body reading catches 17-18% of pages. All three below the 90% fail threshold.
