@@ -20,7 +20,7 @@ What this project currently believes. Updated as predictions are confirmed/refut
 
 ## Knowledge
 
-- [migration-accuracy-scales-with-complexity](knowledge/migration-accuracy-scales-with-complexity.md) — T0: first-pass accuracy 97%→95%→90% as wiki structural complexity increases. n=3.
+- [migration-accuracy-scales-with-complexity](knowledge/migration-accuracy-scales-with-complexity.md) — T1: accuracy scales with complexity. Mechanism tested: depth-aware cross-ref repair improved jarvis from 33%→93% cross-ref accuracy. n=4.
 
 ## Frameworks
 

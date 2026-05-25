@@ -2,6 +2,14 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-25] ingest | evolved skill live test — knowledge bumped to T1
+
+Source: evolved migrate skill live test on vimx (n=4). The three evolve mutations (complexity assessment, evidence-adaptive maturity, depth-aware cross-ref) all validated.
+
+**Changed:** migration-accuracy-scales-with-complexity bumped T0→T1. The mechanism (depth-change cross-ref breakage) was addressed by intervention (three-sub-pass repair), and the intervention improved cross-ref accuracy from 33%→93% on jarvis dry-run. The mechanism is now tested, not just proposed.
+
+**Skipped:** demote-claims-on-migration refinement (the evolved maturity rules implement it, but it's already captured in the prediction's scorecard). Complexity assessment MODERATE score for vimx (minor correction, surprise 1).
+
 ## [2026-05-25] ingest | n=3 resolution — 4 confirmed, 1 knowledge filed
 
 Applied protocol rules to n=3 observations. The protocol's prediction resolution threshold is in the Test operation ("run the test, move to confirmed/refuted"), NOT the knowledge maturity ladder (T0 n>=3). With n=3 and clear fail conditions, 4 predictions are resolvable.
