@@ -10,33 +10,15 @@ prediction -> test -> result -> update
 
 Instead of letting guesses harden into wiki facts, Conjecture makes important claims start as predictions with fail conditions.
 
-## Why use it
+## Why
 
 LLMs are good at writing confident explanations. Wikis are good at making old explanations look authoritative. That combination quietly creates fake knowledge:
 
 > a guess gets written down, future sessions read it as fact, and the project starts steering around something nobody tested.
 
-This is what Conjecture prevents.
+Conjecture is for work that spans many Claude sessions, where project direction depends on assumptions that might be wrong.
 
-Use it when:
-
-- you are building with Claude across many sessions
-- project direction depends on assumptions you have not verified
-- your wiki/README/CLAUDE.md keeps going stale
-- agents keep repeating old claims without checking code or benchmarks
-- you want wrong beliefs preserved instead of forgotten
-
-## What it helps with
-
-Conjecture helps you catch:
-
-- **fake principles**: ideas written down too early and treated as rules
-- **stale docs**: old architecture pages trusted over current code
-- **wrong product stories**: "this is the moat" claims that benchmarks later refute
-- **misleading validation**: measurements that prove safety but not direction
-- **wiki bloat**: pages accumulating without improving decisions
-
-The goal is not more documentation. The goal is better steering.
+It helps you keep untested ideas, stale docs, and refuted product stories from steering the project as if they were facts. The goal is not more documentation. The goal is better steering.
 
 ## The basic move
 
