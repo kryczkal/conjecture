@@ -1,106 +1,77 @@
 ---
 name: wiki-compile
 description: >
-  Is this wiki learning or accumulating? Governor-first audit: score resolved
-  predictions, find what blocks the next resolution, check evidence, surface
-  unfiled predictions, fix what you touch, report.
+  Fix the wiki. Resolve predictions with existing evidence, repair broken schema,
+  add missing scorecards, move files, update index. Report only what requires
+  human judgment or a new experiment.
 effort: max
 ---
 
-Read every page in wiki/. Then:
+Read every page in wiki/. Fix everything you can. Report what you can't.
 
 ## 0. Pre-flight
 
-Count pages whose frontmatter `type` is not in the valid set (prediction | knowledge | framework | axiom | graveyard). Exclude pages in `raw/` — they use `type: raw` or legacy types, which is correct for immutable data. If >3 non-conjecture types outside raw/: print "This wiki has N unmigrated pages. Run /conjecture:migrate first." and stop.
+Count pages with `type` not in valid set (prediction | knowledge | framework | axiom | graveyard). Exclude `raw/`. If >3 invalid: "Run /conjecture:migrate first." Stop.
 
-## 1. Governor (the primary output)
+## 1. Fix predictions with existing evidence
 
-The ONE question: is this wiki learning or accumulating?
+For each open prediction: read the body. If it contains a result (measurements, outcome, "confirmed", "refuted", "inconclusive"), the prediction is ALREADY RESOLVED — it just hasn't been moved yet.
 
-1. Collect every prediction in `predictions/confirmed/` and `predictions/refuted/`. Extract scorecards: `prediction_accuracy` (exact/partial/wrong), `surprise` (low/medium/high), `what_the_prediction_missed`.
-2. Flag resolved predictions missing scorecards. If the body has enough narrative to derive accuracy and surprise (e.g., body says "confirmed" with specific measurements), add the scorecard now.
-3. Count: exact / partial / wrong. Trend vs. previous compile: improving / flat / declining / insufficient data.
-4. If flat or declining: **GOVERNOR ALERT** — "Prediction accuracy is not improving. Consider running /challenge on axioms."
-5. **Confirmable now:** open predictions with existing evidence sufficient to confirm/refute WITHOUT new tests. These are free learning.
-6. **Headline:** `"N resolved, M scorecards, K open. [Learning/Accumulating]. [Trend]."`
+**For each resolvable prediction, execute NOW:**
+1. Determine verdict from body content (confirmed/refuted/inconclusive→graveyard)
+2. Add scorecard YAML to frontmatter (`prediction_accuracy`, `surprise`, `what_the_prediction_missed`)
+3. Change `status: open` → `status: confirmed` or `status: refuted`
+4. Move file to `predictions/confirmed/` or `predictions/refuted/` (or `graveyard/` if inconclusive)
+5. Update `index.md`
 
-**Fix now:** Add scorecard YAML blocks to resolved predictions where the body narrative makes accuracy and surprise derivable.
+Do not ask permission. Do not defer. If the evidence is in the body, act.
 
-## 2. What blocks the next resolution?
+## 2. Fix resolved predictions missing scorecards
 
-For each open prediction, classify:
+For each prediction in `confirmed/` or `refuted/` that lacks a scorecard: if the body narrative contains enough to derive `prediction_accuracy` and `surprise`, add the scorecard YAML now.
 
-- **EVIDENCE EXISTS** — test data is in the wiki; needs scorecard + move
-- **TESTABLE NOW** — no infrastructure needed, just run the test
-- **BLOCKED BY ___** — name the specific blocker
-- **PARKED** — explicitly deferred; state whether park condition changed
+## 3. Fix schema violations
 
-**Execute immediately (before continuing to Section 3):**
-1. For every EVIDENCE EXISTS prediction: add scorecard, move file to `confirmed/` or `refuted/`, update `index.md`. Do this NOW — do not defer to a "Fix" section or an "Actions" list.
-2. For every TESTABLE NOW prediction where the test can be run by reading existing wiki/code: run the test, record the result, move the prediction. Free learning costs nothing.
+Execute all of these without reporting:
+- Add missing frontmatter fields (`created`, `last_verified`, `type`, `status`) where values are derivable
+- Fix invalid `type` values
+- Update `last_verified` on pages you just touched
+- Remove dead `index.md` entries (pointing to files that don't exist)
+- Add orphan pages to `index.md` (pages that exist but aren't listed)
+- Fix broken evidence links (target moved → update path; target deleted → remove link)
+- Add `predictions_generated` to framework pages where downstream predictions are identifiable
 
-Only after all EVIDENCE EXISTS and quick-testable predictions are resolved, rank the remaining open predictions by resolution speed. **Top 3 to test next** with one-sentence rationale each.
+## 4. Fix knowledge gaps
 
-## 3. Knowledge→prediction pipeline
+For each framework: if no prediction has been generated from it in 30 days, add a `## Status: dormant` note.
 
-For each knowledge page: does it contain testable claims not yet filed as predictions?
+For `predictions_generated` on frameworks: if you can identify downstream predictions from cross-references, add them now.
 
-**Unfiled predictions:** state the claim, source page, suggested slug, fail condition. Max 5, ranked by learning value.
+## 5. Compute governor
 
-**Internal contradictions:** knowledge claims that conflict with open predictions. Name both pages and the specific conflict.
+After all fixes are applied:
 
-**Framework accountability:** frameworks missing `predictions_generated` — add the field with known downstream predictions. Frameworks that haven't generated a prediction in 30 days — flag as dead weight.
-
-**Fix now:** Add `predictions_generated` to framework pages where downstream predictions are identifiable from wiki cross-references.
-
-**Flag only:** Unfiled predictions, contradictions, reclassifications.
-
-## 4. Evidence audit (governor-directed)
-
-For pages the governor flagged (resolved predictions, confirmable-now candidates, EVIDENCE EXISTS predictions), check evidence quality:
-
-1. Does cited evidence support the claim? Grade: **STRONG** / **WEAK** / **BROKEN**.
-2. **Co-generated?** Prediction and evidence from the same session? Flag.
-3. **Broken links?** Fix or remove.
-
-Report totals. Name WEAK and BROKEN specifically.
-
-**Fix now:** Remove broken evidence links. If the target file moved (e.g., `sessions/X.md` → `raw/X.md`), update the link.
-
-**Flag only:** WEAK evidence grades, co-generated evidence, evidence direction reversals.
-
-## 5. Schema essentials
-
-Check all pages for:
-- **Frontmatter:** `created`, `last_verified`, `type`, `status` present. `type` in valid set. LLM behavioral claims have `tested_on` + `context`.
-- **Staleness:** `last_verified` older than 30 days.
-- **Orphans:** pages not in `index.md`; index entries pointing to deleted files.
-- **Stuck predictions:** `status: open` older than 14 days.
-- **Fail conditions:** every open prediction has an explicit fail condition.
-- **Maturity distribution:** knowledge pages by tier (T0/T1/T2/T3).
-
-**Fix now:** Add missing frontmatter fields where values are unambiguous. Fix invalid type values. Update stale `last_verified` on pages just verified. Remove dead index entries. Add orphans to index.
-
-**Flag only:** Type reclassifications, missing fail conditions, stuck predictions.
+1. Count scorecards: exact / partial / wrong. Compute score (exact=1, partial=0.5, wrong=0).
+2. Compare to previous compile entry in `log.md`. Trend: improving / flat / declining.
+3. If flat or declining: **GOVERNOR ALERT**.
 
 ## 6. Report
 
+The report is ONLY what you couldn't fix. The structure:
+
 ```
 ## Governor
-[Headline]
-[Confirmable now — if any]
+[N resolved, M open. Score. Trend.]
 
-## Blockers (ranked by resolution speed)
-[slug | category | the ONE thing]
+## Fixed this run (count)
+[file | change]
 
-## Fixed (count)
-[file | what changed | which section caught it]
-
-## Findings (max 6, ranked by learning impact)
-[one-line title | files | fix or flag | why it matters]
-
-## Actions (max 3, completable today)
-[specific action targeting the learning bottleneck]
+## Cannot fix without human judgment (max 5)
+[prediction/page | what's needed | why you can't do it yourself]
 ```
 
-Append to `wiki/log.md`: `## [YYYY-MM-DD] lint | <governor headline>`.
+"Cannot fix" means: requires a new experiment, requires human preference input, requires running code, or involves a judgment call where two valid interpretations exist.
+
+Do NOT list "actions for the user." If you can do it, do it. If you can't, say why.
+
+Append to `wiki/log.md`: `## [YYYY-MM-DD] lint | <headline>`.
