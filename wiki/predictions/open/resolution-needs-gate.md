@@ -30,6 +30,8 @@ Completion bias: an LLM (or human) running the predict→test→score loop wants
 
 The premature resolution mistake does not recur in the next 10 prediction resolutions across any project using conjecture. If operators self-correct after one incident, an enforcement gate is unnecessary overhead.
 
-## Observations (n=1)
+## Observations (n=2)
 
 **conjecture self-test (2026-05-25):** Resolved 4 predictions after 1 test on 1 repo. User caught it. Reverted. The protocol's stated rules did not prevent the error — completion bias overrode them.
+
+**conjecture ingest (2026-05-25):** After the correction, the operator (same LLM) correctly applied the protocol at n=3 — resolved 4 predictions with scorecards, left 2 open for insufficient evidence, filed new knowledge. The correction worked. This is evidence supporting the FAIL condition (operators self-correct after one incident). If this holds for 8 more resolutions, the gate is unnecessary.

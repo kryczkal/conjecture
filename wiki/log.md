@@ -2,6 +2,20 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-25] ingest | n=3 resolution — 4 confirmed, 1 knowledge filed
+
+Applied protocol rules to n=3 observations. The protocol's prediction resolution threshold is in the Test operation ("run the test, move to confirmed/refuted"), NOT the knowledge maturity ladder (T0 n>=3). With n=3 and clear fail conditions, 4 predictions are resolvable.
+
+**Confirmed:** compile-migrate-split (exact), classification-requires-body (exact), iterative-migration (partial — mechanism wrong), demote-claims-on-migration (partial — too aggressive for shipped-code wikis).
+
+**Knowledge filed:** migration-accuracy-scales-with-complexity (T0, n=3). First-pass accuracy inversely correlates with structural complexity.
+
+**Still open:** scorecards-only-from-evidence (n=2, hard test not done), resolution-needs-gate (n=2, one failure + one self-correction).
+
+**Governor:** 4 confirmed, 0 refuted, 4 scorecards. Accuracy: 2 exact, 2 partial, 0 wrong. Learning rate: positive (predictions improved from brainstorm to observation — iterative-migration's mechanism was revised, demotion rule got nuanced). Next fire at ~20.
+
+**Skipped:** resolution-needs-gate observation update (this ingest is evidence for its fail condition — filed inline, not a separate change).
+
 ## [2026-05-25] test | migrate on swarm (n=2) + jarvis (n=3) — parallel runs
 
 Ran migrate on swarm (41 pages, 8 types) and jarvis (78 pages, 11 types) in parallel. All predictions remain open with n=3 observations recorded.
