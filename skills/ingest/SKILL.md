@@ -94,10 +94,13 @@ For each change (descending surprise), determine the right action:
 
 | Action | When |
 |--------|------|
-| **Update existing page** (preferred) | Input enriches something already there — add evidence, note contradiction, connect to other pages, bump maturity if warranted |
+| **Resolve an open prediction** (highest priority) | The input bears on an OPEN prediction's fail condition. If the input satisfies the fail condition → move the page to `predictions/refuted/`, set `status: refuted`, add the scorecard YAML (`prediction_accuracy`, `surprise`, `what_the_prediction_missed`). If it decisively confirms → move to `predictions/confirmed/` with a scorecard. This is the loop closing — do it before anything else the input enables. |
+| **Update existing page** (preferred for non-resolving evidence) | Input enriches something already there — add evidence, note contradiction, connect to other pages, bump maturity if warranted |
 | **New prediction** | Genuinely testable disagreement — must have mechanism, test plan, fail condition per wiki schema |
 | **New knowledge** | Genuine pattern with n≥3 independent observations — not opinions rephrased as patterns |
 | **Complementary pair** | New prediction that tests an unexamined axis of an existing prediction (e.g., depth vs. accuracy) |
+
+**Never soften a contradiction into a caveat.** If the input disconfirms a prediction or a confirmed claim, resolve/reopen it as a status change — do NOT append "but…" to a page while leaving its `status: confirmed`. Disconfirming evidence that only lands as a caveat is the failure mode this product exists to prevent (a wrong belief keeps its authority).
 
 Maximum 5 wiki changes per ingestion. Every change must satisfy the action layer: if removing it would change no decision, don't file it.
 

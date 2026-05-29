@@ -33,6 +33,7 @@ conjecture/
 │   ├── init/                    # scaffold wiki in a target project
 │   ├── migrate/                 # convert non-conjecture wiki to schema
 │   ├── predict/                 # lightweight predictions + scorecards
+│   ├── resolve/                 # run an open prediction's test, resolve at n>=3
 │   ├── ingest/                  # enrich wiki from raw material
 │   ├── distill/                 # compress pages without losing load-bearing facts
 │   └── wiki-compile/            # audit whether the wiki is learning

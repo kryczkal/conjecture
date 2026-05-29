@@ -31,6 +31,8 @@ what_the_prediction_missed: []
 
 The trend in these scorecards IS the system's learning rate.
 
+Default computation: score exact=1, partial=0.5, wrong=0. Compare the last 20 resolved predictions against the previous window of 20. Window average delta is the trend signal. This method can be replaced if a better one emerges. A flat trend is only a problem when the open:resolved ratio is *rising* (accumulating without learning); a flat trend at a stable ratio means the system is learning at capacity and the bottleneck is scope, not the update mechanism.
+
 ## The meta-governor
 
 The governor has presuppositions too. What counts as "accurate"? What counts as "improving"? Those ground out in axiom zero.
@@ -107,10 +109,10 @@ T0 is first-class. You don't need a mechanism to act on a pattern. You need a me
 ## Operations
 
 **Predict** — write `predictions/open/<slug>.md`, update `index.md`, append `log.md`.
-**Test** — run the test. Record what happened. Move to `confirmed/` or `refuted/`. Add scorecard. Extract findings to `knowledge/`.
+**Test** — run the test. Record what happened. Move to `confirmed/` or `refuted/`. Add scorecard. Extract findings to `knowledge/`. Implemented by `/conjecture:resolve`, which procures the observation and gates resolution at n>=3.
 **Observe** — when you notice a pattern (n>=3), file it as T0 knowledge. Ask: does this predict something untested?
 **Challenge** — pick an axiom or framework. Argue the strongest case against it. REVISE/KEEP/BREAK.
-**Govern** — every ~20 confirmed/refuted predictions: compute the accuracy trend. If improving → continue. If flat → challenge axioms. If declining → something is fundamentally wrong.
+**Govern** — every ~20 confirmed/refuted predictions: compute the accuracy trend. If improving → continue. If flat → challenge axioms. If declining → something is fundamentally wrong. Also run a coverage audit: compare domains with predictions against domains with real session activity. Flag domains with real friction but zero predictions — accuracy can improve while coverage stays blind to entire domains the system never bets about.
 **Migrate** — convert a non-conjecture wiki to the schema. Classify every page by reading body content, build a plan (CLEAR/AMBIGUOUS/SKIP), execute on approval. Destructive — requires version control. Designed for iterative runs until clean.
 **Compile** — periodic lint. Check: stale pages (>30d unverified), orphans, broken links, predictions stuck open >14d, frameworks with no downstream predictions, graveyard pages past expiry, axiom challenge dates.
 

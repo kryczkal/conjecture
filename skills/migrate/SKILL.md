@@ -14,6 +14,7 @@ This is a destructive operation. Before anything else:
 1. Verify the working directory is a git repo. If not: error with "migrate requires version control — commit your wiki before running." Stop.
 2. Check for uncommitted changes in wiki/. If dirty: warn "uncommitted changes in wiki/ — commit or stash before migrating." Stop.
 3. Read `wiki/CLAUDE.md`, `wiki/index.md`, `wiki/log.md` (last 10 entries).
+4. **Is there actually a legacy wiki to convert?** If `wiki/` is empty, contains only the Conjecture scaffold, or has no non-conjecture content (no legacy `type:` values, no pages outside the schema), STOP: "Nothing to migrate — this is not a conversion. Use /conjecture:init to scaffold, then /conjecture:ingest to extract predictions from your source material." Migrate *routes existing typed pages*; it cannot manufacture predictions from raw conversations or source docs. Reaching for migrate on a greenfield project silently degrades into an ingest, badly.
 
 ## Complexity Assessment
 
@@ -274,6 +275,13 @@ Rewrite `index.md` to reflect new structure. Append to `log.md`:
 ```
 ## [YYYY-MM-DD] migrate | moved N pages, M ambiguous flagged, J skipped
 ```
+
+### Step 7 — Loop-ignition check (after execution)
+
+Migration installs the schema; it does not start the loop. Two post-checks:
+
+1. **Zero-prediction warning.** If the migration produced NO pages in `predictions/` (the legacy wiki had no hypotheses/bets — a pure knowledge dump), warn loudly in the report: "This wiki is now a faithfully-typed snapshot, not a running loop. A knowledge dump migrated cleanly is still a knowledge dump. To start learning, file at least one prospective prediction (`predictions/open/` with a fail condition), or wire this project's existing automation (autonomous loop, CI hook, daily log) to file predictions." Do NOT fabricate predictions to avoid this warning — surface it honestly. Optionally, list 3-5 latent bets you noticed in the knowledge pages that the user could promote to `predictions/open/`.
+2. **Axiom zero.** Ensure `axioms/self-correction.md` exists (the migrated `wiki/CLAUDE.md` references it). If missing, copy it from the bundled scaffold (`${CLAUDE_SKILL_DIR}/../../protocol/scaffold/axioms/self-correction.md`) so the governor/meta-governor have a foundation to ground out to.
 
 ## Constraints
 

@@ -151,6 +151,16 @@ If not replacing: output the ORIGINAL unchanged. Report which items were lost an
 
 Print the final distilled version (if gate passed) or the original (if gate rejected or fast-exit). No meta-commentary about what was stripped.
 
+## Batch mode (`all`, a directory, or multiple pages)
+
+The three passes above describe a SINGLE page. When asked to distill many pages (`/distill all`, a directory, or a list), do not improvise — follow this:
+
+1. **Resolve the target list first.** Enumerate the exact page paths to be distilled and print them. Exclude `CLAUDE.md`, `index.md`, `log.md`, and anything under `raw/` (raw is immutable).
+2. **One sub-agent per page.** Fan out, each sub-agent running the full Pass 0 → 1 → 2 pipeline on **exactly one** target file. The pipeline is identical to single-page mode — do not re-derive it in the sub-agent prompt; reference this skill.
+3. **Hard scope per sub-agent.** Each sub-agent may read and write **only its one target page**. It must NOT touch `log.md`, `index.md`, sibling pages, or any other file. (The observed failure: a batch sub-agent edited `log.md` and was caught only by the human orchestrator. Forbid it.)
+4. **The gate is per-page and binding.** A page is replaced only if its own coverage gate passes (Tier-1 = 1.00, Tier-2 ≥ 0.90, reduction ≥ 0.20). A failing page is left unchanged.
+5. **Orchestrator aggregates, does not re-distill.** After sub-agents return, collect one summary: per page → replaced / skipped + reason + token reduction. Any `index.md`/`log.md` update is the orchestrator's single explicit final step, never a sub-agent's.
+
 ## Flags
 
 - `--deep` — in Pass 1, replace Decisions bullets with `do X because [full mechanism, no word limit]`. Use when about to implement, not for quick reference.
