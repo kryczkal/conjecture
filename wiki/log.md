@@ -2,6 +2,16 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-29] audit | 9-wiki usage audit — filed resolution-pump prediction, scaffolded Axiom zero
+
+Forensic audit of how the Conjecture engine is used across all 9 wikis + their session transcripts (23-agent workflow, adversarially verified). Core finding: the engine has no **resolution pump** — every skill implements only the intake half of the loop; nothing actively procures the observation that closes an open prediction. The loop runs fully only where an external recurring engine emits observations as a byproduct (iris, vimx, conjecture-self). Proof: iris ran the fullest loop in the fleet with ZERO predict-skill invocations — engine presence, not predict usage, predicts loop health.
+
+**Filed:** [resolution-pump-closes-stalled-loops](predictions/open/resolution-pump-closes-stalled-loops.md) (open) — the keystone recommendation, filed as a prediction with a fail condition rather than promoted to skill law on vibes.
+
+**Scaffolded:** axioms/self-correction.md (Axiom zero) — was referenced by CLAUDE.md line 5 but missing here and in every other wiki. The meta-governor could not ground out without it.
+
+**Skill edits applied (working tree, uncommitted):** init now copies the bundled scaffold (kills hardcode-drift, ships the axiom); protocol backported iris's governor computation + coverage audit; ingest gained an explicit resolve/refute action + "never soften a contradiction into a caveat" rule; wiki-compile gained softened-contradiction + stale-open flags and a flat-at-capacity governor refinement; migrate gained a no-legacy-wiki pre-flight guard + a zero-prediction loop-ignition warning; distill gained a batch-mode spec. predict left unchanged (verdict: redundant — the loop runs without it).
+
 ## [2026-05-25] test | evolved compile on vimx/swarm/jarvis — 2 confirmed, 1 open
 
 Ran evolved wiki-compile (governor-first, interleaved fixes, compressed audit) on all 3 repos.

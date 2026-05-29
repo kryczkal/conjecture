@@ -7,6 +7,7 @@ What this project currently believes. Updated as predictions are confirmed/refut
 - [scorecards-only-from-evidence](predictions/open/scorecards-only-from-evidence.md) — never hallucinate scorecards. **n=2, hard test not yet done.**
 - [resolution-needs-gate](predictions/open/resolution-needs-gate.md) — protocol needs enforcement gate. **n=2: one failure, one self-correction. 8 more resolutions needed.**
 - [compile-redirects-to-migrate](predictions/open/compile-redirects-to-migrate.md) — compile should redirect unmigrated wikis to migrate. **n=3 pre-flights passed, but fail condition (mixed-schema) untested.**
+- [resolution-pump-closes-stalled-loops](predictions/open/resolution-pump-closes-stalled-loops.md) — the missing piece is a resolution pump, not more prediction surface. **n=cross-project (9-wiki usage audit); needs a live test on a stalled wiki.**
 
 ## Confirmed predictions
 
@@ -32,3 +33,7 @@ What this project currently believes. Updated as predictions are confirmed/refut
 ## Frameworks
 
 (none yet)
+
+## Axioms
+
+- [self-correction](axioms/self-correction.md) — Axiom zero: a biased system self-corrects faster than it drifts if challenge mechanisms are built in. **last_challenged: never.**
