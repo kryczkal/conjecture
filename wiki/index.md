@@ -6,8 +6,8 @@ What this project currently believes. Updated as predictions are confirmed/refut
 
 - [scorecards-only-from-evidence](predictions/open/scorecards-only-from-evidence.md) — never hallucinate scorecards. **n=2, hard test not yet done.**
 - [resolution-needs-gate](predictions/open/resolution-needs-gate.md) — protocol needs enforcement gate. **n=2: one failure, one self-correction. 8 more resolutions needed.**
-- [compile-redirects-to-migrate](predictions/open/compile-redirects-to-migrate.md) — compile should redirect unmigrated wikis to migrate. **n=3 pre-flights passed, but fail condition (mixed-schema) untested.**
-- [resolution-pump-closes-stalled-loops](predictions/open/resolution-pump-closes-stalled-loops.md) — the missing piece is a resolution pump, not more prediction surface. **n=cross-project (9-wiki usage audit); needs a live test on a stalled wiki.**
+- [compile-redirects-to-migrate](predictions/open/compile-redirects-to-migrate.md) — compile should redirect unmigrated wikis to migrate. **n=4: mixed-schema positive case finally tested (synthetic), redirect + raw/-exclusion fire correctly; need real mid-migration wikis to resolve.**
+- [resolution-pump-closes-stalled-loops](predictions/open/resolution-pump-closes-stalled-loops.md) — the missing piece is a resolution pump, not more prediction surface. **Pump built (test-hypotheses skill, predict deleted); long-horizon — needs ~4wk run on a stalled wiki.**
 
 ## Confirmed predictions
 

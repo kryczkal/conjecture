@@ -1,18 +1,18 @@
 ---
-name: resolve
+name: test-hypotheses
 description: >
   Close the loop. Take open predictions, actively RUN their tests, and resolve them
   to confirmed/refuted with a scorecard — gated at n>=3 so completion bias can't close
   a bet early. This is the half of the loop no other skill owns: observe a prediction
   against reality. Use after running an experiment, on a schedule, or when open
-  predictions pile up. Invoke with /conjecture:resolve [slug | --all | --stale].
+  predictions pile up. Invoke with /conjecture:test-hypotheses [slug | --all | --stale].
 argument-hint: [prediction slug | --all | --stale | --force]
 effort: max
 ---
 
-# Resolve — close open predictions against reality
+# Test hypotheses — close open predictions against reality
 
-`predict` opens a bet. `resolve` closes it. Every other skill creates or audits pages; this one does the act the product is named for — run the test, see what happened, and book the result honestly.
+Every other skill creates or audits pages; this one does the act the product is named for — run an open prediction's test, see what happened, and book the result honestly.
 
 Resolution is an **action, not a report**. If a prediction's test can be run, run it. Do not defer to the user what you can execute yourself.
 
@@ -39,7 +39,7 @@ This is the heart of the skill. Execute the test plan literally, using whatever 
 - if it names a behavior to observe → reproduce it and record what happens
 - if it is an LLM behavioral claim → run the prompt/scenario on the stated model
 
-Record the **raw result** (numbers, output, what actually happened), not a summary judgment. `wiki-compile` resolves predictions whose evidence is already written down; `resolve` *generates* that evidence. If a prediction has no executable test plan, that is itself a finding — go to §5.
+Record the **raw result** (numbers, output, what actually happened), not a summary judgment. `wiki-compile` resolves predictions whose evidence is already written down; `test-hypotheses` *generates* that evidence. If a prediction has no executable test plan, that is itself a finding — go to §5.
 
 ## 3. The n>=3 gate — the reason this skill exists
 
@@ -89,16 +89,16 @@ Make un-reachability **visible** so the governor's open count means something.
 
 ## 6. Running unattended / on a schedule
 
-The observation supply should not depend on the maintainer doing unrelated work. `resolve` is designed to be wrapped:
+The observation supply should not depend on the maintainer doing unrelated work. `test-hypotheses` is designed to be wrapped:
 
-- `/loop` or `/schedule` can run `/conjecture:resolve --all` on a cadence (e.g. weekly). Pair it with the governor: `govern` *measures* the trend, `resolve` *procures* the observations it measures.
-- For a wiki with a native engine (a friction log, CI, an autonomous loop), the highest-leverage move is to wire that engine to file observations or call `resolve` — that is how a stalled wiki starts closing its loop without a human authoring each resolution.
+- `/loop` or `/schedule` can run `/conjecture:test-hypotheses --all` on a cadence (e.g. weekly). Pair it with the governor: `govern` *measures* the trend, `test-hypotheses` *procures* the observations it measures.
+- For a wiki with a native engine (a friction log, CI, an autonomous loop), the highest-leverage move is to wire that engine to file observations or call `test-hypotheses` — that is how a stalled wiki starts closing its loop without a human authoring each resolution.
 
 ## 7. Log and report
 
 Append to `wiki/log.md`:
 ```
-## [YYYY-MM-DD] resolve | N tested, X confirmed, Y refuted, Z held (n<3), W long-horizon
+## [YYYY-MM-DD] test-hypotheses | N tested, X confirmed, Y refuted, Z held (n<3), W long-horizon
 ```
 
 Report: each resolution with its verdict + surprise; what stayed open and why (n<3, or not yet testable); any knowledge extracted. If this run pushes the wiki across a ~20-resolution boundary, suggest `/conjecture:wiki-compile` to recompute the governor trend.

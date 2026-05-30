@@ -2,6 +2,17 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-30] test-hypotheses | 4 walked, 1 tested, 0 confirmed, 0 refuted, 2 held (n<3), 1 long-horizon, 1 blocked-on-user
+
+First run of the renamed skill (`resolve` → `test-hypotheses`; `predict` skill deleted as redundant). Walked all 4 open predictions and triaged for testability now.
+
+- **compile-redirects-to-migrate** — tested. Built a synthetic 50/50 mixed-schema wiki (3 valid + 4 legacy types + a `raw/` page) and ran §0 pre-flight literally: counted 4 invalid > 3 → fired the redirect as a single directive (not 4 per-page flags); `raw/` correctly excluded; boundary confirmed at `>3` (3 invalid → proceeds). First test of the positive case, but n=1 and *synthetic* → held open, not resolved. Fail condition is also now partly stale (the no-redirect counterfactual can't be observed since the redirect is built in).
+- **resolution-pump-closes-stalled-loops** — long-horizon. Today's rename/delete executed its "if true → build the pump, demote predict" action, but the bet (does the pump close a *stalled* loop unaided over ~4wk?) is unobservable until run on swarm/jarvis. Logged the milestone, flagged `long-horizon`, kept open. Resolving here would be the exact completion bias resolution-needs-gate guards against.
+- **resolution-needs-gate** — held at n=2. Noted that the gate is now skill-enforced (§3 of test-hypotheses), which confounds the original rules-only fail condition; flagged for fail-condition refinement on next compile.
+- **scorecards-only-from-evidence** — blocked on user: its test plan needs the user's *independent* scorecards for vimx's 6 resolved predictions to compare against LLM-inferred ones. Cannot procure solo.
+
+Net: 0 resolutions. The discipline held — a single clean synthetic run did not close a bet.
+
 ## [2026-05-29] audit | 9-wiki usage audit — filed resolution-pump prediction, scaffolded Axiom zero
 
 Forensic audit of how the Conjecture engine is used across all 9 wikis + their session transcripts (23-agent workflow, adversarially verified). Core finding: the engine has no **resolution pump** — every skill implements only the intake half of the loop; nothing actively procures the observation that closes an open prediction. The loop runs fully only where an external recurring engine emits observations as a byproduct (iris, vimx, conjecture-self). Proof: iris ran the fullest loop in the fleet with ZERO predict-skill invocations — engine presence, not predict usage, predicts loop health.

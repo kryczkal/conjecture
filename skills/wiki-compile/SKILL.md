@@ -17,7 +17,7 @@ Count pages with `type` not in valid set (prediction | knowledge | framework | a
 
 For each open prediction: read the body. If it contains a result (measurements, outcome, "confirmed", "refuted", "inconclusive"), the prediction is ALREADY RESOLVED — it just hasn't been moved yet.
 
-(Predictions whose test has NOT been run are not resolvable here — compile only moves predictions whose evidence already exists in the body. To actively run an open prediction's test and procure that evidence, use `/conjecture:resolve`.)
+(Predictions whose test has NOT been run are not resolvable here — compile only moves predictions whose evidence already exists in the body. To actively run an open prediction's test and procure that evidence, use `/conjecture:test-hypotheses`.)
 
 **For each resolvable prediction, execute NOW:**
 1. Determine verdict from body content (confirmed/refuted/inconclusive→graveyard)

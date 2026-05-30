@@ -43,8 +43,7 @@ The first entry sounds like knowledge. The second entry can be tested, lost, and
 | Command | What it does |
 |---|---|
 | `/conjecture:init` | Create a `wiki/` built around predictions |
-| `/conjecture:predict` | State a falsifiable bet before work |
-| `/conjecture:resolve` | Run an open prediction's test and book the result — confirmed or refuted (n>=3 gated) |
+| `/conjecture:test-hypotheses` | Run an open prediction's test and book the result — confirmed or refuted (n>=3 gated) |
 | `/conjecture:ingest <file>` | Pull testable claims from notes, logs, transcripts, benchmarks |
 | `/conjecture:distill <page>` | Shorten a page without losing decisions or evidence |
 | `/conjecture:wiki-compile` | Check whether the wiki is learning or just growing |

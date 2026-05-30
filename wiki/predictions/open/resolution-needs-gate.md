@@ -1,6 +1,6 @@
 ---
 created: 2026-05-25
-last_verified: 2026-05-25
+last_verified: 2026-05-30
 type: prediction
 status: open
 context: [protocol-design, self-correction]
@@ -35,3 +35,5 @@ The premature resolution mistake does not recur in the next 10 prediction resolu
 **conjecture self-test (2026-05-25):** Resolved 4 predictions after 1 test on 1 repo. User caught it. Reverted. The protocol's stated rules did not prevent the error — completion bias overrode them.
 
 **conjecture ingest (2026-05-25):** After the correction, the operator (same LLM) correctly applied the protocol at n=3 — resolved 4 predictions with scorecards, left 2 open for insufficient evidence, filed new knowledge. The correction worked. This is evidence supporting the FAIL condition (operators self-correct after one incident). If this holds for 8 more resolutions, the gate is unnecessary.
+
+**Note (2026-05-30):** The fail condition tests the *rules-only* world ("do operators self-correct without an enforced gate?"). That world no longer fully exists: the `test-hypotheses` skill now bakes the n≥3 gate into §3 as an explicit check. So future resolutions run *with* a structural gate, which confounds the original rules-only experiment — a clean "did they self-regulate unaided?" reading is no longer available. This prediction now mostly resolves toward its "if true → add an explicit gate" branch by construction. Held open at n=2 rather than reframed mid-flight; reconsider whether to refine the fail condition (e.g. "does the *enforced* gate actually catch a premature-resolution attempt in practice?") on the next compile.

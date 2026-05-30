@@ -1,10 +1,11 @@
 ---
 created: 2026-05-29
-last_verified: 2026-05-29
+last_verified: 2026-05-30
 type: prediction
 status: open
 context: [protocol-design, loop-stall, usage-audit]
 tested_on: [claude-opus-4-8]
+long-horizon: testable after the pump runs on a stalled wiki (swarm/jarvis) for ~4 weeks
 ---
 
 # A resolution pump — not more prediction surface — is what closes a stalled Conjecture loop
@@ -41,3 +42,7 @@ Refuted if EITHER: (a) a resolution pump is added to a stalled wiki and over ~4 
 **swarm / jarvis (empty):** migrate faithfully produced 0-prediction knowledge dumps; both have a live native learn-from-failure loop (F-numbered frictions) that was never wired to emit predictions; the schema sits beside the real loop, not inside it.
 
 **conjecture-self (partial):** resolved 6 predictions in one 2.5h build session, then dormant 4 days — resolution happens exactly as fast as the maintainer does skill-dev work, and stalls the instant it stops.
+
+## Milestone (2026-05-30) — the "if true" action was executed, NOT the bet resolved
+
+The keystone skill now exists: the `resolve` skill was renamed to `test-hypotheses` (the protocol's `Test` operation, with the n≥3 gate baked into §3 and scorecards written into the file), and the `predict` skill was deleted as redundant — exactly the "If true → build the pump, demote predict" decision this prediction prescribes. **This is acting on the prediction on faith, not confirming it.** Building the pump is a precondition; the bet is about whether the pump *closes a stalled loop without a human authoring each resolution*, which can only be observed by running it on a stalled wiki (swarm/jarvis) over ~4 weeks. Status stays **open** — long-horizon. Resolving here would be the precise completion bias [[resolution-needs-gate]] exists to stop. Trigger: re-test after the first scheduled `/conjecture:test-hypotheses --all` cadence has run against a stalled wiki for the test-plan horizon.

@@ -69,7 +69,7 @@ If the project has a `CLAUDE.md` at its root, check if it already references `wi
 
 ## Wiki
 
-Knowledge synthesis lives in `wiki/`. Schema at `wiki/CLAUDE.md`. Operations: predict, resolve, ingest, distill, wiki-compile.
+Knowledge synthesis lives in `wiki/`. Schema at `wiki/CLAUDE.md`. Operations: test-hypotheses, ingest, distill, wiki-compile.
 ```
 
 If there is no root `CLAUDE.md`, do NOT create one — that's the user's choice.
@@ -82,14 +82,14 @@ Tell the user:
 Conjecture wiki initialized in wiki/.
 
 Next steps:
-- /conjecture:predict before your next task (state what you expect)
-- /conjecture:resolve to run an open prediction's test and book the result
+- File your first prospective bet (predictions/open/) with a fail condition before your next task
+- /conjecture:test-hypotheses to run an open prediction's test and book the result
 - /conjecture:ingest <file> to enrich the wiki with external knowledge
 - /conjecture:wiki-compile to check learning health
 
 The loop only learns once predictions get tested. File your first prospective bet
 (predictions/open/) with a fail condition before the next significant task, then
-/conjecture:resolve it once you have evidence.
+/conjecture:test-hypotheses it once you have evidence.
 ```
 
 ## Rules
