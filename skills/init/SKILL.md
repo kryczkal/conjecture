@@ -69,7 +69,7 @@ If the project has a `CLAUDE.md` at its root, check if it already references `wi
 
 ## Wiki
 
-Knowledge synthesis lives in `wiki/`. Schema at `wiki/CLAUDE.md`. Operations: test-hypotheses, ingest, distill, wiki-compile.
+Knowledge synthesis lives in `wiki/`. Schema at `wiki/CLAUDE.md`. Operations: test-hypotheses, exploit, ingest, distill, wiki-compile.
 ```
 
 If there is no root `CLAUDE.md`, do NOT create one — that's the user's choice.

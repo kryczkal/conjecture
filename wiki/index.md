@@ -8,6 +8,7 @@ What this project currently believes. Updated as predictions are confirmed/refut
 - [resolution-needs-gate](predictions/open/resolution-needs-gate.md) — protocol needs enforcement gate. **n=2: one failure, one self-correction. 8 more resolutions needed.**
 - [compile-redirects-to-migrate](predictions/open/compile-redirects-to-migrate.md) — compile should redirect unmigrated wikis to migrate. **n=4: mixed-schema positive case finally tested (synthetic), redirect + raw/-exclusion fire correctly; need real mid-migration wikis to resolve.**
 - [resolution-pump-closes-stalled-loops](predictions/open/resolution-pump-closes-stalled-loops.md) — the missing piece is a resolution pump, not more prediction surface. **Pump built (test-hypotheses skill, predict deleted); long-horizon — needs ~4wk run on a stalled wiki.**
+- [exploit-closes-outer-loop](predictions/open/exploit-closes-outer-loop.md) — the gap between a learning wiki and an improving project is a missing *export* operation, not missing knowledge. **exploit skill built; long-horizon — first observation from before/after test on real wikis.**
 
 ## Confirmed predictions
 

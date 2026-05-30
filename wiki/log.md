@@ -2,6 +2,24 @@
 
 Chronological record of wiki operations. Append-only.
 
+## [2026-05-31] evolve + test | exploit §4 fix kept; §1 skip-rule bug found on real wikis and fixed
+
+`/evolve` on exploit + a before/after test on 3 real knowledge-rich wikis (iris, nozzz, vimx) via 6 dry-run subagents (3 before, 3 after), claude-opus-4-8.
+
+**Evolve (one section):** attribution put the weakness in §4 (act-vs-propose) — worst friction in 3/3 before-runs (single axis; no rule for the split artifact-edit-vs-human-action case; the table contradicted the prose on cross-context/deferred changes). Rewrote §4 into a two-step split + escalation triggers (cross-context / source-defers-or-contests / not-contained). After-runs: §4 clean on iris ("the sharpest instruction in the skill"), narrower on nozzz, praised on vimx ("pre-solved a real adjudication"). Kept (10/12 → 12/12 on the act/propose axis).
+
+**Test-found bug (second, separate fix):** with §4 fixed, 3/3 after-runs converged on a new worst friction — §1's `applications:`-backlink skip-rule is a no-op on any wiki not built by exploit, and on ingested-from-code wikis (vimx) it reports already-shipped knowledge as false gaps. Fixed §1 to check the **artifact, not the backlink**, and to scope out open predictions as sources.
+
+**First observation for [exploit-closes-outer-loop]:** all 3 wikis had `grep applications:` = empty (0 of all confirmed pages applied) AND each surfaced ≥3 real high-leverage unapplied gaps; vimx was shipping a *refuted* belief (dead LiteLLM path). Premise supported, n=1, not resolving (gate held).
+
+## [2026-05-30] build | exploit skill — the outer loop (wiki → project)
+
+Built `/conjecture:exploit`: the mirror of ingest. ingest pulls the world into the wiki; exploit pushes confirmed knowledge back out to the project (code, benchmark, strategy doc, process) and un-applies refuted beliefs. Core invariant: **every application is itself a prediction** (confirmed-in-context is not true-everywhere), filed with a fail condition; execution calibrates to blast radius (act on reversible/Claude-doable changes, propose high-stakes/real-world ones). It is the enforcement arm of the Action layer — checks whether a page's claimed decision actually changed the artifact.
+
+Extended the canonical protocol: new **The outer loop** section, **Exploit** operation, `applied_from`/`applications` frontmatter (symmetric to frameworks' `predictions_generated`), and a knowledge-fertility note (a confirmed page with `applications: []` hasn't changed the project).
+
+**Filed:** [exploit-closes-outer-loop](predictions/open/exploit-closes-outer-loop.md) (open) — the export-gap bet, with a fail condition, rather than promoting the skill to law on vibes. First observation comes from a before/after `/evolve` test on iris/nozzz/vimx (in progress).
+
 ## [2026-05-30] test-hypotheses | 4 walked, 1 tested, 0 confirmed, 0 refuted, 2 held (n<3), 1 long-horizon, 1 blocked-on-user
 
 First run of the renamed skill (`resolve` → `test-hypotheses`; `predict` skill deleted as redundant). Walked all 4 open predictions and triaged for testability now.

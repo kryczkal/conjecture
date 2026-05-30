@@ -16,6 +16,8 @@ Core loop:
 predict -> observe -> notice the gap -> update
 ```
 
+The loop does not end at the wiki. Confirmed beliefs change the project — code, benchmarks, a strategy doc — and each change is itself a new prediction. That outer loop is `/conjecture:exploit`.
+
 The wiki is not a knowledge dump. It is memory for that loop:
 
 - open predictions hold untested beliefs
@@ -33,6 +35,7 @@ conjecture/
 │   ├── init/                    # scaffold wiki in a target project
 │   ├── migrate/                 # convert non-conjecture wiki to schema
 │   ├── test-hypotheses/         # run an open prediction's test, resolve at n>=3
+│   ├── exploit/                 # apply confirmed knowledge to the project (outer loop)
 │   ├── ingest/                  # enrich wiki from raw material
 │   ├── distill/                 # compress pages without losing load-bearing facts
 │   └── wiki-compile/            # audit whether the wiki is learning
@@ -49,6 +52,7 @@ conjecture/
 - Prefer updating existing wiki pages over creating new ones. More pages are not progress unless they improve prediction quality.
 - Keep refutations visible. Wrong predictions are product value, not cleanup.
 - When changing the protocol, ask what decision the change will alter and what future observation would prove it wrong.
+- Applying knowledge is itself a prediction. `exploit` files a bet for every application and calibrates to blast radius (act on reversible changes, propose high-stakes ones); it never rewrites the project on "wiki says so."
 
 ## Testing
 

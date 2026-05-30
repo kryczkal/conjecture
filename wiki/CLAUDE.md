@@ -8,6 +8,17 @@ Every page is a bet — a claim about how something works that is specific enoug
 
 All learning is one operation: predict → observe → notice the gap → update the model that generated the prediction. This wiki is the loop's memory. Predictions are pages. Observations are test results. Updates are revisions.
 
+## The outer loop
+
+Updating the wiki is not the terminus. A belief that survived testing has earned the right to change the project — the code, the architecture, the benchmark, the process, the strategy. That change is the point; a wiki that learns while the project stays put is just an honest notebook.
+
+But applying a confirmed belief to the project is a transfer into a new context (Rule 8: confirmed-in-context, not true-everywhere), so every application is itself a prediction — "applying K to the artifact will produce effect Y" — filed with a fail condition. A refuted application is evidence the knowledge was narrower than believed, and feeds back as a context boundary on its source.
+
+- **Inner loop:** predict → observe → update the wiki.
+- **Outer loop:** confirmed wiki → change the project → that change is a new prediction.
+
+Implemented by `/conjecture:exploit`, which calibrates execution to blast radius (act on reversible changes, propose high-stakes ones) and un-applies beliefs the wiki has refuted.
+
 ## The governor
 
 The loop alone is not enough. A system that updates without tracking whether updates improve predictions is changing without learning.
@@ -30,6 +41,8 @@ what_the_prediction_missed: []
 ```
 
 The trend in these scorecards IS the system's learning rate.
+
+Default computation: score exact=1, partial=0.5, wrong=0. Compare the last 20 resolved predictions against the previous window of 20. Window average delta is the trend signal. This method can be replaced if a better one emerges. A flat trend is only a problem when the open:resolved ratio is *rising* (accumulating without learning); a flat trend at a stable ratio means the system is learning at capacity and the bottleneck is scope, not the update mechanism.
 
 ## The meta-governor
 
@@ -68,6 +81,8 @@ status: open | confirmed | refuted        # predictions
         active | superseded | archived     # knowledge, frameworks
 tested_on: []      # model IDs (e.g., claude-sonnet-4-6, claude-opus-4-6)
 context: []        # where observed (e.g., skill-evolution, code-review)
+applied_from: []   # outer loop: source belief slug(s) an application prediction acts on
+applications: []   # outer loop: downstream application prediction(s) a knowledge page produced
 ---
 ```
 
@@ -86,7 +101,7 @@ T0 is first-class. You don't need a mechanism to act on a pattern. You need a me
 
 | Layer | Question | What to check |
 |-------|----------|---------------|
-| Action | What decision does this change? | If removing the page changes no behavior, delete it |
+| Action | What decision does this change? | If removing the page changes no behavior, delete it. `/conjecture:exploit` checks whether that decision actually changed the project |
 | Mechanism | Why does this happen? | The causal chain, not just correlation |
 | Testing | What would prove this wrong? | Fail condition must be stated |
 | Convergence | How broadly confirmed? | tested_on, context, replication count |
@@ -96,7 +111,7 @@ T0 is first-class. You don't need a mechanism to act on a pattern. You need a me
 
 **Prediction** — the core unit. A bet about how something works, specific enough to be wrong. Must have: prediction (one sentence), mechanism (why you expect this), decisions (what changes if true), test plan (how to check), fail condition (what kills it). When confirmed/refuted, add the scorecard.
 
-**Knowledge** — observations with evidence. Tagged with maturity tier (T0-T3). Encompasses findings, decisions, sources, benchmarks. The maturity ladder is the promotion path, not separate types.
+**Knowledge** — observations with evidence. Tagged with maturity tier (T0-T3). Encompasses findings, decisions, sources, benchmarks. The maturity ladder is the promotion path, not separate types. Fertility check (symmetric to frameworks): a confirmed knowledge page that has never been applied (`applications: []`) hasn't changed the project — exploit it, or question whether it's load-bearing.
 
 **Framework** — value commitments and interpretive lenses. They generate predictions but are not themselves testable. Evaluated by fertility: does this framework produce predictions that turn out to be accurate? A framework that hasn't generated a prediction in 30 days is dead weight. Delete it. Must have: what it commits to, what it's blind to, what predictions it has generated.
 
@@ -107,10 +122,12 @@ T0 is first-class. You don't need a mechanism to act on a pattern. You need a me
 ## Operations
 
 **Predict** — write `predictions/open/<slug>.md`, update `index.md`, append `log.md`.
-**Test** — run the test. Record what happened. Move to `confirmed/` or `refuted/`. Add scorecard. Extract findings to `knowledge/`.
+**Test** — run the test. Record what happened. Move to `confirmed/` or `refuted/`. Add scorecard. Extract findings to `knowledge/`. Implemented by `/conjecture:test-hypotheses`, which procures the observation and gates resolution at n>=3.
 **Observe** — when you notice a pattern (n>=3), file it as T0 knowledge. Ask: does this predict something untested?
+**Exploit** — take confirmed knowledge (and refuted beliefs) out to the project: apply what's true, un-apply what's false. Calibrate execution to blast radius — act on reversible/doable changes, propose high-stakes or real-world ones. File every application as a new open prediction linked to its source (`applied_from`). Implemented by `/conjecture:exploit`.
 **Challenge** — pick an axiom or framework. Argue the strongest case against it. REVISE/KEEP/BREAK.
-**Govern** — every ~20 confirmed/refuted predictions: compute the accuracy trend. If improving → continue. If flat → challenge axioms. If declining → something is fundamentally wrong.
+**Govern** — every ~20 confirmed/refuted predictions: compute the accuracy trend. If improving → continue. If flat → challenge axioms. If declining → something is fundamentally wrong. Also run a coverage audit: compare domains with predictions against domains with real session activity. Flag domains with real friction but zero predictions — accuracy can improve while coverage stays blind to entire domains the system never bets about.
+**Migrate** — convert a non-conjecture wiki to the schema. Classify every page by reading body content, build a plan (CLEAR/AMBIGUOUS/SKIP), execute on approval. Destructive — requires version control. Designed for iterative runs until clean.
 **Compile** — periodic lint. Check: stale pages (>30d unverified), orphans, broken links, predictions stuck open >14d, frameworks with no downstream predictions, graveyard pages past expiry, axiom challenge dates.
 
 ## Rules

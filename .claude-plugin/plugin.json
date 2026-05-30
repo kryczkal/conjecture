@@ -1,6 +1,6 @@
 {
   "name": "conjecture",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Conjectures and refutations for software. A reasoning protocol that turns every change into a falsifiable prediction — predict, test, learn, repeat.",
   "author": {
     "name": "Lukasz Kryczka",
